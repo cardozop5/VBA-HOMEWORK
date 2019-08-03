@@ -1,0 +1,30 @@
+Sub multi_Year_Stock_Data():
+
+Range("I1").Value = "Ticker"
+Range("J1").Value = "Total Stock Volume"
+
+Dim data As Double
+Dim brand As String
+Dim rownumber As Integer
+
+rownumber = 2
+data = 0
+
+For i = 2 To 70926
+
+If Cells(i - 1, 1) = Cells(i, 1) And Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+    brand = Cells(i, 1).Value
+    data = data + Cells(i, 7).Value
+    Range("I" & rownumber).Value = brand
+    Range("J" & rownumber).Value = data
+    rownumber = rownumber + 1
+    data = 0
+Else
+data = data + Cells(i, 7).Value
+End If
+
+    Next i
+    
+    
+End Sub
+
